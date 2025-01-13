@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    .form-container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .form-group input:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 5px;
+    }
+    .form-group button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      font-size: 1em;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .form-group button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+<div style="text-align:center;margin-top:40px">
+ <a style="font-size:40px; padding-right:20px;" href="skincare1.html">Home</a>
+ <a style="font-size:40px; padding-right:20px;" href="skincarepage.html">skincare</a>
+ <a style="font-size:40px; padding-right:20px;" href="sunscreen.html">sunscreen</a>
+ <a style="font-size:40px; padding-right:20px;" href="aboutus.html">About us</a>
+ <a style="font-size:40px; padding-right:20px;"
+href="sign.html">Sign Up</a>
+</div>>
+  <div class="form-container">
+    <h2>Sign Up</h2>
+    <form id="signupForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" />
+        <div class="error" id="usernameError"></div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" />
+        <div class="error" id="emailError"></div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" />
+        <div class="error" id="passwordError"></div>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" />
+        <div class="error" id="confirmPasswordError"></div>
+      </div>
+      <div class="form-group">
+        <button type="submit">Sign Up</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Clear previous errors
+      document.querySelectorAll('.error').forEach(error => (error.textContent = ''));
+
+      let isValid = true;
+
+      // Validate Username
+      const username = document.getElementById('username').value.trim();
+      if (username.length < 3) {
+        document.getElementById('usernameError').textContent = 'Username must be at least 3 characters.';
+        isValid = false;
+      }
+
+      // Validate Email
+      const email = document.getElementById('email').value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').textContent = 'Enter a valid email address.';
+        isValid = false;
+      }
+
+      // Validate Password
+      const password = document.getElementById('password').value.trim();
+      if (password.length < 6) {
+        document.getElementById('passwordError').textContent = 'Password must be at least 6 characters.';
+        isValid = false;
+      }
+
+      // Validate Confirm Password
+      const confirmPassword = document.getElementById('confirmPassword').value.trim();
+      if (confirmPassword !== password) {
+        document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+        isValid = false;
+      }
+
+      // If all fields are valid
+      if (isValid) {
+        alert('Form submitted successfully!');
+        // Reset the form (Optional)
+        document.getElementById('signupForm').reset();
+      }
+    });
+  </script>
+</body>
+</html>
